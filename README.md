@@ -9,7 +9,7 @@
 - 多条件匹配，查询信息
 
 **项目结构：**
-![image](http://github.com/Jackhuang-haohua/node-practice1/readmeImg/list.png)
+![image](https://github.com/Jackhuang-haohua/node-practice1/blob/master/readmeImg/list.png)
 
 - dao：mongodb依赖，以及封装的操作数据库的方法
 - lib：需要引用的js和css文件
