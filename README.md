@@ -10,8 +10,6 @@
 - 多条件匹配，查询信息
 
 **项目结构：**
-![image](https://github.com/Jackhuang-haohua/node-practice1/blob/master/readmeImg/jiegou.png)
-
 - dao：mongodb依赖，以及封装的操作数据库的方法
 - lib：需要引用的js和css文件
 - method：使用mongodb依赖方法封装的，操作表格学生信息表格的方法
@@ -21,6 +19,7 @@
 - views：用来渲染的ejs文件
 - app.js：出口文件
 - 注readmeImg为无关文件，是这个readme的图片
+![image](https://github.com/Jackhuang-haohua/node-practice1/blob/master/readmeImg/jiegou.png)
 
 **所用技术栈：**
 - bootstrap、jquery
