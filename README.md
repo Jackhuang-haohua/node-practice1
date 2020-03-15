@@ -19,6 +19,7 @@
 - views：用来渲染的ejs文件
 - app.js：出口文件
 - 注readmeImg为无关文件，是这个readme的图片
+
 ![image](https://github.com/Jackhuang-haohua/node-practice1/blob/master/readmeImg/jiegou.png)
 
 **所用技术栈：**
