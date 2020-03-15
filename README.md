@@ -1,4 +1,5 @@
 # 使用node.js制作的，简易学生管理系统，包含增删改查功能
+![image](https://github.com/Jackhuang-haohua/node-practice1/blob/master/readmeImg/list.png)
 
 ## 项目介绍
 
@@ -9,7 +10,7 @@
 - 多条件匹配，查询信息
 
 **项目结构：**
-![image](https://github.com/Jackhuang-haohua/node-practice1/blob/master/readmeImg/list.png)
+![image](https://github.com/Jackhuang-haohua/node-practice1/blob/master/readmeImg/jiegou.png)
 
 - dao：mongodb依赖，以及封装的操作数据库的方法
 - lib：需要引用的js和css文件
