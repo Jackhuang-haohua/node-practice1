@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>信息添加</title>
+    <link rel="stylesheet" href="./../lib/bootstrap.min.css">
+    <style>
+        .add {
+            width: 400px;
+            margin: 50px auto;
+            margin-top: 0px;
+        }
+
+        #pic {
+            outline: none;
+        }
+
+        h3 {
+            width: 200px;
+            text-align: center;
+            margin: 30px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <h3>录入学生信息</h3>
+    <div>
+
+        姓名:<input type="text" id="studentName" /> <br />
+        性别:<input type="text" id="sex" /> <br />
+        年龄:<input type="text" id="age" /> <br />
+        籍贯:<input type="text" id="from" /> <br />
+        所在班级:<input type="text" id="class" /> <br />
+        封面图片上传:<input type="file" id="pic" name="pic" /> <br />
+        <button type="button" onclick="add()">确定</button>
+
+    </div> -->
+
+    <h3>录入学生信息</h3>
+
+    <form class="form-horizontal add">
+        <div class="form-group">
+            <label for="studentName" class="col-sm-2 control-label">姓名</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="studentName">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="sex" class="col-sm-2 control-label">性别</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="sex">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="age" class="col-sm-2 control-label">年龄</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="age">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="from" class="col-sm-2 control-label">籍贯</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="from">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="class" class="col-sm-2 control-label">班级</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="class">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="pic" class="col-sm-2 control-label">上传图片</label>
+            <div class="col-sm-10">
+                <input type="file" id="pic" name="pic" class="control-label">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" onclick="add()" class="btn btn-default">确定</button>
+            </div>
+        </div>
+    </form>
+
+</body>
+
+</html>
+<script src="./../lib/jquery.min.js"></script>
+<script>
+    function add() {
+        // 获取值
+        // $.trim会删除空白字符
+        var studentName = $.trim($("#studentName").val());
+        var sex = $.trim($("#sex").val());
+        var age = $.trim($("#age").val());
+        var class1 = $.trim($("#class").val());
+        var from = $.trim($("#from").val());
+
+        // 存储值
+        // FormData对象用以将数据编译成键值对，以便用XMLHttpRequest来发送数据。
+        // 其主要用于发送表单数据，但亦可用于发送带键数据(keyed data)，而独立于表单使用。
+        // 如果表单enctype属性设为multipart/form-data ，则会使用表单的submit()方法来发送数据。
+        var formData = new FormData();
+        formData.append("pic", document.getElementById("pic").files[0]);
+        formData.append("studentName", studentName);
+        formData.append("sex", sex);
+        formData.append("class", class1);
+        formData.append("from", from);
+        formData.append("age", age);
+
+        // 发送值
+        $.ajax({
+            url: '/student_add',
+            type: 'post',
+            dataType: 'json',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                if (data.status == 200) {
+                    // alert(data.message);
+                    //页面跳转
+                    window.location.href = '/student_list';
+                } else {
+                    //失败
+                    alert(data.message);
+                }
+            }
+        });
+    }
+</script>

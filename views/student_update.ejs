@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>信息修改</title>
+    <link rel="stylesheet" href="./../lib/bootstrap.min.css">
+    <style>
+        .update {
+            width: 400px;
+            margin: 50px auto;
+            margin-top: 0px;
+        }
+
+        #pic {
+            outline: none;
+        }
+
+        h3 {
+            width: 200px;
+            text-align: center;
+            margin: 30px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <h3>修改学生信息</h3>
+    <div>
+        <input type="hidden" id="_id" value="<%=studentList._id%>" />
+        姓名:<input type="text" id="studentName" value="<%=studentList.studentName%>" /> <br />
+        性别:<input type="text" id="sex" value="<%=studentList.sex%>" /> <br />
+        年龄:<input type="text" id="age" value="<%=studentList.age%>" /> <br />
+        籍贯:<input type="text" id="from" value="<%=studentList.from%>" /> <br />
+        所在班级:<input type="text" id="class" value="<%=studentList.class%>" /> <br />
+        <%if(studentList.picUrl){%>
+        封面图片: <br />
+        <img src="<%=studentList.picUrl %>" width="150px" height="150px" /> <br />
+        <%}else{%>
+        暂无封面图片 <br />
+        <%}%>
+    封面图片上传:<input type="file" id="pic" name="pic"/> <br/>
+
+    <button type="button" onclick="update()">确定</button> -->
+
+    <h3>修改学生信息</h3>
+
+    <form class="form-horizontal update">
+        <input type="hidden" id="_id" value="<%=studentList._id%>" />
+
+        <div class="form-group">
+            <label for="studentName" class="col-sm-2 control-label">姓名</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="studentName" value="<%=studentList.studentName%>">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="sex" class="col-sm-2 control-label">性别</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="sex" value="<%=studentList.sex%>">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="age" class="col-sm-2 control-label">年龄</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="age" value="<%=studentList.age%>">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="from" class="col-sm-2 control-label">籍贯</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="from" value="<%=studentList.from%>">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="class" class="col-sm-2 control-label">班级</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="class" value="<%=studentList.class%>">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <%if(studentList.picUrl){%>
+            <label for="" class="col-sm-2 control-label">照片</label>
+            <div class="col-sm-10">
+                <img src="<%=studentList.picUrl %>" width="150px" height="150px" />
+            </div>
+            <%}else{%>
+            <label for="" class="col-sm-2 control-label">暂无照片</label>
+            <div class="col-sm-10">
+
+            </div>
+            <%}%>
+        </div>
+
+        <div class="form-group">
+            <label for="pic" class="col-sm-2 control-label">上传照片</label>
+            <div class="col-sm-10">
+                <input type="file" id="pic" name="pic" class="control-label">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" onclick="update()" class="btn btn-default">确定</button>
+            </div>
+        </div>
+        </form>
+
+    </div>
+
+</body>
+
+</html>
+<script src="./../lib/jquery.min.js"></script>
+<script>
+    function update() {
+
+        var studentName = $.trim($("#studentName").val());
+        var sex = $.trim($("#sex").val());
+        var age = $.trim($("#age").val());
+        var class1 = $.trim($("#class").val());
+        var from = $.trim($("#from").val());
+        var _id = $("#_id").val();
+
+        var formData = new FormData();
+        formData.append("pic", document.getElementById("pic").files[0]);
+
+        formData.append("studentName", studentName);
+        formData.append("sex", sex);
+        formData.append("class", class1);
+        formData.append("from", from);
+        formData.append("age", age);
+        formData.append("_id", _id);
+
+        $.ajax({
+            url: '/student_update',
+            type: 'post',
+            dataType: 'json',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                if (data.status == 200) {
+                    // alert(data.message);
+                    //页面跳转
+                    window.location.href = '/student_list';
+                } else {
+                    //失败
+                    alert(data.message);
+                }
+            }
+        });
+    }
+</script>
