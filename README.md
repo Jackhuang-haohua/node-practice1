@@ -27,6 +27,7 @@
 - node依赖：MongoDB(mongo依赖)、ejs(后端渲染)、silly-datetime(获取时间)、multiparty(文件上传)、fs模块
 
 **使用方法：**
+- 需要mongoDB
 - clone本仓库，在(vscode)编辑器打开
 - 打开命令行，输入 `nodemon app.js`
 - 在网页打开 http://localhost:3000/student_list 即可
